@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+   name: voting-rc
+   labels:
+     name: voting-app-rc
+     app: demo-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: voting-app-rc
+  template:
+    metadata:
+      name: voting-app-rc
+      labels:
+        name: voting-app-rc
+        app: demo-test
+    spec:
+      containers:
+        - name: voting-app
+          image: kodekloud/examplevotingapp_vote:v1
+          ports:
+            - containerPort: 80

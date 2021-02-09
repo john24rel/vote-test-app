@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+  labels:
+    name: postgres-srv     
+    app: demo-test
+spec:
+  selector:
+    name: postgres-app-rc
+    app: demo-test       
+  ports:
+    - port: 5432
+      targetPort: 5432
+  

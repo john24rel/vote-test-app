@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+   name: postgres-app-rc
+   labels:
+     name: postgres-app-rc
+     app: demo-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: postgres-app-rc
+  template:
+    metadata:
+      name: postgres-app-rc
+      labels:
+        name: postgres-app-rc
+        app: demo-test
+    spec:
+      containers:
+        - name: postgres
+          image: postgres
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_PASSWORD
+              value: "postgres"
